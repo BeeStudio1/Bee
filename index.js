@@ -4,6 +4,10 @@ const keepAlive = require("./keepalive");
 
 keepAlive(); // Lance le serveur web pour UptimeRobot
 
+const { app, playerStats } = require("./api");
+const PORT = process.env.PORT || 3000;        
+app.listen(PORT, () => console.log("API en ligne sur le port " + PORT));
+
 const client = new Client({
   intents: [
     GatewayIntentBits.Guilds,
