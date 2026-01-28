@@ -23,10 +23,23 @@ function saveStats() {
 
 // Recevoir les stats du jeu Roblox
 app.post("/stats", (req, res) => {
-    const data = req.body;
-    playerStats[data.username.toLowerCase()] = data;
-    saveStats(); // Persister les données
-    res.send("OK");
+    try {
+        const data = req.body;
+        const username = data.username.toLowerCase();
+        console.log(`[API] 📥 Stats reçues pour: ${data.username} (ID: ${data.user_id})`);
+        console.log(`[API] Clé sauvegardée: "${username}"`);
+        
+        playerStats[username] = data;
+        saveStats(); // Persister les données
+        
+        console.log(`[API] ✅ Stats sauvegardées avec succès`);
+        console.log(`[API] Stats actuellement disponibles:`, Object.keys(playerStats));
+        
+        res.json({ status: "OK", message: `Stats sauvegardées pour ${data.username}` });
+    } catch (err) {
+        console.error("[API] ❌ Erreur réception stats:", err);
+        res.status(500).json({ error: "Erreur lors de la sauvegarde des stats" });
+    }
 });
 
 // Récupérer les stats (pour le bot)
