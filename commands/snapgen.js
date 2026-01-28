@@ -5,7 +5,7 @@ const path = require("path");
 module.exports = {
   data: new SlashCommandBuilder()
     .setName("snapgen")
-    .setDescription("Génère un username aléatoire et l'ajoute à la liste."),
+    .setDescription("Generate a user they want do her snapscore."),
 
   async execute(interaction) {
     // Génération d'un username aléatoire
