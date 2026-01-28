@@ -1,7 +1,7 @@
 const express = require("express");
-const fetch = require("node-fetch");
 
-function keepAlive() {
+async function keepAlive() {
+  const fetch = (await import("node-fetch")).default;
   const app = express();
 
   app.get("/", (req, res) => {
