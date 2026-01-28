@@ -3,10 +3,10 @@ const { SlashCommandBuilder } = require("discord.js");
 module.exports = {
     data: new SlashCommandBuilder()
         .setName("bbstats")
-        .setDescription("Affiche les stats d'un joueur Roblox")
+        .setDescription("Show stats of a player of bee's botdata")
         .addStringOption(option =>
-            option.setName("pseudo")
-                .setDescription("Le pseudo Roblox")
+            option.setName("user")
+                .setDescription("Roblox username")
                 .setRequired(true)
         ),
 
@@ -25,7 +25,7 @@ module.exports = {
             const userData = await userResponse.json();
             
             if (!userData.data || userData.data.length === 0) {
-                return interaction.editReply("❌ Joueur Roblox introuvable.");
+                return interaction.editReply("❌ noen't found.");
             }
 
             const userId = userData.data[0].id;
@@ -53,14 +53,14 @@ module.exports = {
                     color: 0x00A2FF,
                     thumbnail: { url: `https://www.roblox.com/headshot-thumbnail/image?userId=${userId}&width=420&height=420&format=png` },
                     fields: [
-                        { name: "👤 Pseudo Roblox", value: `${username}`, inline: true },
+                        { name: "👤 User", value: `${username}`, inline: true },
                         { name: "🆔 ID", value: `${userId}`, inline: true },
                         { name: "⭐ Level", value: `${stats.level || "0"}`, inline: true },
-                        { name: "💀 Décès", value: `${stats.death || "0"}`, inline: true },
+                        { name: "💀 Deaths", value: `${stats.death || "0"}`, inline: true },
                         { name: "💰 Beebux", value: `${stats.beebux || "0"}`, inline: true },
-                        { name: "🎯 XP du Level", value: `${stats.level_xp || "0"}`, inline: true },
-                        { name: "⏱️ Temps en vie", value: `${stats.time_alive || "0"}s`, inline: true },
-                        { name: "🏆 Meilleur temps", value: `${stats.best_time || "0"}s`, inline: true },
+                        { name: "🎯 XPLevel", value: `${stats.level_xp || "0"}`, inline: true },
+                        { name: "⏱️ Time alive", value: `${stats.time_alive || "0"}s`, inline: true },
+                        { name: "🏆 Best Time", value: `${stats.best_time || "0"}s`, inline: true },
                         { name: "🗺️ Map", value: `${stats.map || "N/A"}`, inline: true }
                     ]
                 }]
