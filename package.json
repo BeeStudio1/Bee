@@ -1,14 +1,9 @@
 {
-  "name": "bee-panel",
+  "name": "my-discord-bot",
   "version": "1.0.0",
-  "description": "Bee-Panel Pro - Dashboard + Discord Bot Manager",
-  "main": "main.js",
+  "main": "bot.js",
   "scripts": {
-    "start": "electron .",
-    "push": "git add . && git commit -m \"update\" && git push"
-  },
-  "devDependencies": {
-    "electron": "^32.0.0"
+    "start": "node bot.js"
   },
   "dependencies": {
     "discord.js": "^14.0.0",
