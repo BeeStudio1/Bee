@@ -1,4 +1,5 @@
 const { SlashCommandBuilder } = require("discord.js");
+const fetch = require("node-fetch");
 
 module.exports = {
     data: new SlashCommandBuilder()
@@ -12,10 +13,12 @@ module.exports = {
 
     async execute(interaction) {
         await interaction.deferReply();
-        const pseudo = interaction.options.getString("pseudo");
+        // option name must match the one we defined above
+        const pseudo = interaction.options.getString("user");
 
         try {
             // Récupérer l'ID du joueur Roblox
+            // node-fetch is already a dependency; use global fetch or import it explicitly if needed
             const userResponse = await fetch(`https://users.roblox.com/v1/usernames/users`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },

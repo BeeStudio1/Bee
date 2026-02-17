@@ -1,3 +1,4 @@
 node_modules/
 .env
 player_stats.json
+snaplist.json
